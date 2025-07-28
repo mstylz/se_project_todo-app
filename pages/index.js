@@ -31,14 +31,14 @@ addTodoCloseBtn.addEventListener("click", () => closeModal(addTodoPopup));
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
-  const name = evt.target.name.value;
+  const todoName = evt.target.name.value;
   const dateInput = evt.target.date.value;
 
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
   const id = uuidv4();
-  const values = { name, date, id, completed: false };
+  const values = { name: todoName, date, id, completed: false };
 
   todosList.append(generateTodo(values));
 
