@@ -11,24 +11,8 @@ const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
 /* ===== reusable helpers ===== */
-
-// ESC key handler
-const handleEscClose = (evt) => {
-  if (evt.key === "Escape") {
-    const openPopup = document.querySelector(".popup_visible");
-    if (openPopup) closeModal(openPopup);
-  }
-};
-
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-  document.addEventListener("keydown", handleEscClose);
-};
-
-const closeModal = (modal) => {
-  modal.classList.remove("popup_visible");
-  document.removeEventListener("keydown", handleEscClose);
-};
+const openModal = (modal) => modal.classList.add("popup_visible");
+const closeModal = (modal) => modal.classList.remove("popup_visible");
 
 const renderTodo = (todoData) => {
   todosList.append(generateTodo(todoData));
@@ -54,8 +38,11 @@ addTodoForm.addEventListener("submit", (evt) => {
   const todoName = evt.target.name.value;
   const dateInput = evt.target.date.value;
 
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+  let date = null;
+  if (dateInput) {
+    date = new Date(dateInput);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+  }
 
   const id = uuidv4();
   const newTodoData = {
