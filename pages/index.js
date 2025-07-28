@@ -14,6 +14,10 @@ const todosList = document.querySelector(".todos__list");
 const openModal = (modal) => modal.classList.add("popup_visible");
 const closeModal = (modal) => modal.classList.remove("popup_visible");
 
+const renderTodo = (todoData) => {
+  todosList.append(generateTodo(todoData));
+};
+
 /* ===== form validator ===== */
 const todoValidator = new FormValidator(validationConfig, addTodoForm);
 todoValidator.enableValidation();
@@ -38,9 +42,14 @@ addTodoForm.addEventListener("submit", (evt) => {
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
   const id = uuidv4();
-  const values = { name: todoName, date, id, completed: false };
+  const newTodoData = {
+    name: todoName,
+    date,
+    id,
+    completed: false,
+  };
 
-  todosList.append(generateTodo(values));
+  renderTodo(newTodoData);
 
   evt.target.reset();
   todoValidator.resetValidation();
@@ -48,4 +57,4 @@ addTodoForm.addEventListener("submit", (evt) => {
 });
 
 /* ===== initial render ===== */
-initialTodos.forEach((item) => todosList.append(generateTodo(item)));
+initialTodos.forEach(renderTodo);
