@@ -6,8 +6,8 @@ import FormValidator from "../components/FormValidator.js";
 /* ===== DOM elements ===== */
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopup.querySelector(".popup__form");
-const addTodoCloseBtn = document.forms["add-todo-form"];
+const addTodoForm = document.forms["add-todo-form"];
+const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
 /* ===== reusable helpers ===== */
