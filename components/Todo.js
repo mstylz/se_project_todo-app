@@ -22,13 +22,11 @@ class Todo {
     this._dateEl = this._element.querySelector(".todo__date");
     this._deleteBtn = this._element.querySelector(".todo__delete-btn");
 
-    /* --- populate data --- */
     this._nameEl.textContent = this._data.name;
     this._checkbox.checked = this._data.completed;
     this._checkbox.id = `todo-${this._data.id}`;
     this._label.setAttribute("for", this._checkbox.id);
 
-    /* --- optional date --- */
     if (this._data.date && !isNaN(new Date(this._data.date))) {
       const due = new Date(this._data.date);
       this._dateEl.textContent = `Due: ${due.toLocaleDateString("en-US", {
