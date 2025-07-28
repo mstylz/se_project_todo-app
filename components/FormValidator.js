@@ -46,6 +46,7 @@ class FormValidator {
 
   enableValidation() {
     this._setEventListeners();
+    this._toggleButtonState();   // 👈 initialize button state on load
   }
 
   resetValidation() {
