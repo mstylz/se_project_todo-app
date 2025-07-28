@@ -11,8 +11,24 @@ const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
 /* ===== reusable helpers ===== */
-const openModal = (modal) => modal.classList.add("popup_visible");
-const closeModal = (modal) => modal.classList.remove("popup_visible");
+
+// ESC key handler
+const handleEscClose = (evt) => {
+  if (evt.key === "Escape") {
+    const openPopup = document.querySelector(".popup_visible");
+    if (openPopup) closeModal(openPopup);
+  }
+};
+
+const openModal = (modal) => {
+  modal.classList.add("popup_visible");
+  document.addEventListener("keydown", handleEscClose);
+};
+
+const closeModal = (modal) => {
+  modal.classList.remove("popup_visible");
+  document.removeEventListener("keydown", handleEscClose);
+};
 
 const renderTodo = (todoData) => {
   todosList.append(generateTodo(todoData));
