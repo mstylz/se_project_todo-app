@@ -12,7 +12,25 @@ const todosList = document.querySelector(".todos__list");
 
 /* ===== reusable helpers ===== */
 const openModal = (modal) => modal.classList.add("popup_visible");
+const handleEscapeKey = (evt) => {
+  if (evt.key === "Escape") {
+    const openPopup = document.querySelector(".popup_visible");
+    if (openPopup) {
+      closeModal(openPopup);
+    }
+  }
+};
+
 const closeModal = (modal) => modal.classList.remove("popup_visible");
+const openModal = (modal) => {
+  modal.classList.add("popup_visible");
+  document.addEventListener("keydown", handleEscapeKey);
+};
+
+const closeModal = (modal) => {
+  modal.classList.remove("popup_visible");
+  document.removeEventListener("keydown", handleEscapeKey);
+};
 
 const renderTodo = (todoData) => {
   todosList.append(generateTodo(todoData));
