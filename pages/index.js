@@ -78,11 +78,13 @@ const addTodoPopup = new PopupWithForm({
       );
 
     todoElement
-      .querySelector(".todo__delete-btn")
-      .addEventListener("click", () => {
-        todoElement.remove();
-        todoCounter.updateTotal(false);
-      });
+  .querySelector('.todo__delete-btn')
+  .addEventListener('click', () => {
+    const wasCompleted = todoElement.querySelector('.todo__completed').checked;
+    todoElement.remove();
+    todoCounter.updateTotal(false);
+    if (wasCompleted) todoCounter.updateCompleted(false);
+     });
   },
 });
 
