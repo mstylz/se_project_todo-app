@@ -1,13 +1,23 @@
 class Todo {
-  constructor(data, selector) {
+  constructor(data, selector, counter) {
     this._data = data;
     this._templateElement = document.querySelector(selector);
+    this._counter = counter;   // <-- receive counter
   }
 
   _setEventListeners() {
-    this._deleteBtn.addEventListener("click", () => this._element.remove());
-    this._checkbox.addEventListener("change", () => {
-      this._data.completed = this._checkbox.checked;
+    // delete
+    this._deleteBtn.addEventListener("click", () => {
+      const wasCompleted = this._checkbox.checked;
+      this._element.remove();
+      this._counter.updateTotal(false);
+      if (wasCompleted) this._counter.updateCompleted(false);
+    });
+
+    // checkbox
+    this._checkbox.addEventListener("change", (evt) => {
+      this._data.completed = evt.target.checked;
+      this._counter.updateCompleted(evt.target.checked);
     });
   }
 
