@@ -46,11 +46,11 @@ class FormValidator {
 
   enableValidation() {
     this._setEventListeners();
-    this._toggleButtonState();   // 👈 initialize button state on load
+    this._toggleButtonState();
   }
 
   resetValidation() {
-    this._form.reset();
+    // this._form.reset();   ← removed—form keeps user input
     this._inputs.forEach((i) => this._hideError(i));
     this._toggleButtonState();
   }
