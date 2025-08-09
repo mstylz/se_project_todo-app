@@ -29,7 +29,7 @@ const section = new Section({
 });
 section.renderItems();
 
-/* ---------- Popup instance ---------- */
+/* ---------- Popup instance (must exist before validator) ---------- */
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
   handleFormSubmit: ({ name, date }) => {
@@ -54,7 +54,7 @@ const addTodoPopup = new PopupWithForm({
 });
 addTodoPopup.setEventListeners();
 
-/* ---------- Form validator ---------- */
+/* ---------- Form validator (after popup is created) ---------- */
 const formValidator = new FormValidator(
   validationConfig,
   addTodoPopup.getForm()
