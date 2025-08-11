@@ -50,7 +50,7 @@ class FormValidator {
   }
 
   resetValidation() {
-    // this._form.reset();   ← removed—form keeps user input
+    this._form.reset();
     this._inputs.forEach((i) => this._hideError(i));
     this._toggleButtonState();
   }
